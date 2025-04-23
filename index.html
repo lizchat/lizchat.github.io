@@ -229,7 +229,7 @@
                 <div class="footer">	
 					<!-- 自动跳转提示，会被 JS 控制是否显示 -->
 					<div id="redirect-tip" class="text-center text-muted mb-2" style="display: none;">
-						<small>本页将在 <strong id="countdown">60</strong> 秒后自动跳转至可用地址列表中的第一个网站</small>
+						<small>本页将在 <strong id="countdown">180</strong> 秒后自动跳转至可用地址列表中的第一个网站</small>
 					</div>				
                     <p class="mb-0">© 2025 lizchat. All Rights Reserved</p>
                 </div>
@@ -247,7 +247,7 @@
 		document.getElementById("redirect-tip").style.display = "block";
 
 		// 倒计时逻辑
-		let seconds = 60;
+		let seconds = 180;
 		const countdownEl = document.getElementById("countdown");
 
 		const timer = setInterval(() => {
