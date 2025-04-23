@@ -226,7 +226,11 @@
                     </div>
                 </div>
 				
-                <div class="footer">
+                <div class="footer">	
+					<!-- 自动跳转提示，会被 JS 控制是否显示 -->
+					<div id="redirect-tip" class="text-center text-muted mb-2" style="display: none;">
+						<small>本页将在 <strong id="countdown">60</strong> 秒后自动跳转至可用地址列表中的第一个网站</small>
+					</div>				
                     <p class="mb-0">© 2025 lizchat. All Rights Reserved</p>
                 </div>
             </div>
@@ -235,5 +239,35 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+	  const enableAutoRedirect = true; // ← 控制是否启用自动跳转和倒计时提示
+
+	  if (enableAutoRedirect) {
+		// 显示提示区域
+		document.getElementById("redirect-tip").style.display = "block";
+
+		// 倒计时逻辑
+		let seconds = 60;
+		const countdownEl = document.getElementById("countdown");
+
+		const timer = setInterval(() => {
+		  seconds--;
+		  countdownEl.textContent = seconds;
+		  if (seconds <= 0) {
+			clearInterval(timer);
+		  }
+		}, 1000);
+
+		// 60秒后跳转
+		setTimeout(() => {
+		  const links = document.querySelectorAll('.address-link');
+		  if (links.length > 0) {
+			const firstUrl = links[0].href;
+			window.location.href = firstUrl;
+		  }
+		}, 60000);
+	  }
+	</script>
 </body>
+
 </html>
